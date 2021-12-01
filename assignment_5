@@ -1,0 +1,42 @@
+import random
+
+p1 = int(input("How many tokens will player 1 have?"))
+p2 = int(input("How many tokens will player 2 have?"))
+pot = (p1 - p1 + 1) + (p1 - p1 + 1)
+
+def spin_dreidel():
+    print("The dreidel is spinning...")
+    dreidel_side = random.randint(1, 4)
+    return dreidel_side
+
+def give_or_take_tokens(dreidel_side):
+    if dreidel_side == 1:
+        print("The dreidel landed on Hey")
+        return pot / 2
+    elif dreidel_side == 2:
+        print("The dreidel landed on Nun")
+        return 0
+    elif dreidel_side == 3:
+        print("The dreidel landed on Gimel")
+        return pot
+    elif dreidel_side == 4:
+        print("The dreidel landed on Shin")
+        return pot -1
+
+def main(pot=pot):
+    print("It's player 1's turn")
+    x = spin_dreidel()
+    y = give_or_take_tokens(x)
+    p1_update = p1 + y
+    pot = pot - y + (p1 - p1 + 1) + (p2 - p2 + 1)
+    print(f"Player 1's new balance: {p1_update}")
+    print(f"Pot: {pot}")
+    print("It's player 2's turn")
+    x2 = spin_dreidel()
+    y2 = give_or_take_tokens(x2)
+    pot = pot - y2 + (p1 - p1 + 1) + (p2 - p2 + 1)
+    print(f"Player 2's new balance: {pot}")
+    print(f"Pot: {pot}")
+
+
+main()
